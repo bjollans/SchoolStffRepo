@@ -15,7 +15,7 @@ end
 
 $person1 = Person.new(["Ski","Joggen", "Rad"], "Hans");
 $person2 = Person.new(["Rad","Segeln"], "Peter");
-$person3 = Person.new(["Schwimmen","Zocken", "Rad", "Joggen"], "Dieter");
+$person3 = Person.new(["Schwimmen","Zocken", "Rad", "Joggen","Laufen"], "Dieter");
 
 def writeSimillarPersons(hobbiesArray)
 	
@@ -38,25 +38,26 @@ def writeSimillarPersons(hobbiesArray)
 		end
 	end
 	
+	for i in(0..rank.length-1)
+		if(rank[i] == nil) then
+			rank[i] = 0;
+		end
+	end
+	
+	
 	for i in (0..rank.length-1)
 		j = rank.index(rank.max);
-		puts "" + (i+1) + $personArray[j].name + ": " + hobbyShare[j] + "\n";
+		if(rank[j] > 0) then
+			puts "" + (i+1).to_s() + ". " + $personArray[j].name + ": " + hobbyShare[j] + "\n";
+		end
 		rank[j] = -1;
 	end
 
 end
 
 
-
-def write(array)
-	for i in (0..array.length)
-		puts array[i];
-	end
-end
-
-puts "Type in your hobbies";
+puts "Type in your hobbies and put a comma at the end";
 hobbies = gets.split(",");
 writeSimillarPersons(hobbies);
-write(hobbies);
 
 
